@@ -287,6 +287,15 @@ func (sp *SAMLServiceProvider) BuildAuthURL(relayState string) (string, error) {
 	return sp.BuildAuthURLFromDocument(relayState, doc)
 }
 
+// BuildAuthURLWithRedirect builds redirect URL to be sent to principal with the HTTP Redirect Binding
+func (sp *SAMLServiceProvider) BuildAuthURLWithRedirect(relayState string) (string, error) {
+	doc, err := sp.BuildAuthRequestDocument()
+	if err != nil {
+		return "", err
+	}
+	return sp.BuildAuthURLRedirect(relayState, doc)
+}
+
 // AuthRedirect takes a ResponseWriter and Request from an http interaction and
 // redirects to the SAMLServiceProvider's configured IdP, including the
 // relayState provided, if any.
