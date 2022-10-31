@@ -278,8 +278,8 @@ func (sp *SAMLServiceProvider) BuildAuthBodyPostFromDocument(relayState string, 
 	return sp.buildAuthBodyPostFromDocument(relayState, doc)
 }
 
-// BuildAuthURL builds redirect URL to be sent to principal
-func (sp *SAMLServiceProvider) BuildAuthURL(relayState string) (string, error) {
+// BuildAuthURLWithPost builds redirect URL to be sent to principal
+func (sp *SAMLServiceProvider) BuildAuthURLWithPost(relayState string) (string, error) {
 	doc, err := sp.BuildAuthRequestDocument()
 	if err != nil {
 		return "", err
@@ -300,7 +300,7 @@ func (sp *SAMLServiceProvider) BuildAuthURLWithRedirect(relayState string) (stri
 // redirects to the SAMLServiceProvider's configured IdP, including the
 // relayState provided, if any.
 func (sp *SAMLServiceProvider) AuthRedirect(w http.ResponseWriter, r *http.Request, relayState string) (err error) {
-	url, err := sp.BuildAuthURL(relayState)
+	url, err := sp.BuildAuthURLWithPost(relayState)
 	if err != nil {
 		return err
 	}
