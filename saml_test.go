@@ -149,7 +149,7 @@ func TestSAML(t *testing.T) {
 		NameIdFormat:                NameIdFormatPersistent,
 	}
 
-	authRequestURL, err := sp.BuildAuthURL("/some/link/here")
+	authRequestURL, err := sp.BuildAuthURLWithPost("/some/link/here")
 	require.NoError(t, err)
 	require.NotEmpty(t, authRequestURL)
 

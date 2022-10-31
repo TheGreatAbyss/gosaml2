@@ -122,7 +122,7 @@ func main() {
 	})
 
 	println("Visit this URL To Authenticate:")
-	authURL, err := sp.BuildAuthURL("")
+	authURL, err := sp.BuildAuthURLWithPost("")
 	if err != nil {
 		panic(err)
 	}
